@@ -8,10 +8,10 @@ use Horizom\VarDumper\VarDumper;
  * @param   mixed $args
  * @return  void|string
  */
-function ddump()
+function ddumper()
 {
     $args = func_get_args();
-    dump($args);
+    dumper($args);
     die;
 }
 
@@ -21,10 +21,10 @@ function ddump()
  * @param   mixed $args
  * @return  void|string
  */
-function ddump_text()
+function ddumper_text()
 {
     $args = func_get_args();
-    dump_text($args);
+    dumper_text($args);
     die;
 }
 
@@ -34,7 +34,7 @@ function ddump_text()
  * @param   mixed $args
  * @return  void|string
  */
-function dump()
+function dumper()
 {
     // arguments passed to this function
     $args = func_get_args();
@@ -89,7 +89,7 @@ function dump()
  * @param   mixed $args
  * @return  void|string
  */
-function dump_text()
+function dumper_text()
 {
     $args        = func_get_args();
     $options     = array();
