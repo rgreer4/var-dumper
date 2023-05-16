@@ -227,7 +227,7 @@ class VarDumper
         $this->fmt->endExp();
         $this->evaluate($subject);
         $this->fmt->endRoot();
-        $this->fmt->flush();
+        return $this->fmt->flush();
 
         self::$time += microtime(true) - $this->startTime;
     }
