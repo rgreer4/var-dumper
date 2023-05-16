@@ -36,6 +36,8 @@ function ddumper_text()
  */
 function dumper()
 {
+    $output = '';
+
     // arguments passed to this function
     $args = func_get_args();
 
@@ -53,7 +55,7 @@ function dumper()
 
     //$capture = in_array('@', $options, true);
     $capture = array_shift($args);
-    
+
     // something went wrong while trying to parse the source expressions?
     // if so, silently ignore this part and leave out the expression info
     if (func_num_args()-1 !== count($expressions)) {
@@ -70,17 +72,13 @@ function dumper()
 
     $ref = new VarDumper($format);
 
-    if ($capture) {
-        ob_start();
-    }
-
     foreach ($args as $index => $arg) {
-        $ref->query($arg, $expressions ? $expressions[$index] : null);
+        $output .= $ref->query($arg, $expressions ? $expressions[$index] : null);
     }
 
     // return the results if this function was called with the error suppression operator
-    if ($capture) {
-        return ob_get_clean();
+    if (!$capture) {
+        return $output;
     }
 
     // stop the script if this function was called with the bitwise not operator
@@ -88,6 +86,8 @@ function dumper()
         print '</body></html>';
         exit(0);
     }
+
+    return $output;
 }
 
 /**
