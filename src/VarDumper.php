@@ -1413,6 +1413,9 @@ class VarDumper
                             try {
                                 $date   = new \DateTime($subject);
                                 $errors = \DateTime::getLastErrors();
+                                
+                                $errors['warning_count'] = $errors['warning_count'] ?: 0;
+                                $errors['error_count'] = $errors['error_count'] ?: 0;
 
                                 if (($errors['warning_count'] < 1) && ($errors['error_count'] < 1)) {
                                     $now    = new \Datetime('now');
