@@ -33,7 +33,7 @@ class TextFormatter extends Formatter
 
     public function flush()
     {
-        print $this->out;
+        return $this->out;
         $this->out   = '';
         $this->cache = array();
     }
