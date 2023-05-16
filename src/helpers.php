@@ -32,7 +32,7 @@ function ddumper_text()
  * Shortcut to VarDumper, HTML mode
  *
  * @param   mixed $args
- * @return  void|string
+ * @return  string
  */
 function dumper()
 {
