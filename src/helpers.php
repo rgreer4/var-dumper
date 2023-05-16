@@ -39,17 +39,24 @@ function dumper()
     // arguments passed to this function
     $args = func_get_args();
 
+    if(count($args) < 2)
+        {
+        throw new \Horizom\VarDumper\VarDumperException('Insufficient arguments.');
+        }
+
     // options (operators) gathered by the expression parser;
     // this variable gets passed as reference to getInputExpressions(), which will store the operators in it
     $options = array();
 
     // names of the arguments that were passed to this function
     $expressions = VarDumper::getInputExpressions($options);
-    $capture = in_array('@', $options, true);
 
+    //$capture = in_array('@', $options, true);
+    $capture = array_shift($args);
+    
     // something went wrong while trying to parse the source expressions?
     // if so, silently ignore this part and leave out the expression info
-    if (func_num_args() !== count($expressions)) {
+    if (func_num_args()-1 !== count($expressions)) {
         $expressions = null;
     }
 
