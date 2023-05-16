@@ -24,11 +24,11 @@ class VarDumper
     protected static $config = array(
 
         // initially expanded levels (for HTML mode only)
-        'expLvl'               => 1,
+        'expLvl'               => 20,
 
         // depth limit (0 = no limit);
         // this is not related to recursion
-        'maxDepth'             => 6,
+        'maxDepth'             => 20,
 
         // show the place where r() has been called from
         'showBacktrace'        => true,
@@ -51,7 +51,7 @@ class VarDumper
 
         // shortcut functions used to access the query method below;
         // if they are namespaced, the namespace must be present as well (methods are not supported)
-        'shortcutFunc'         => array('dump', 'dump_text'),
+        'shortcutFunc'         => array('dumper', 'dumper_text'),
 
         // custom/external formatters (as associative array: format => className)
         'formatters'           => array(),
@@ -68,7 +68,7 @@ class VarDumper
         'showUrls'             => false,
 
         // stop evaluation after this amount of time (seconds)
-        'timeout'              => 10,
+        'timeout'              => 60,
 
         // whether to produce W3c-valid HTML,
         // or unintelligible, but optimized markup that takes less space
