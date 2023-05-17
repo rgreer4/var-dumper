@@ -32,7 +32,7 @@ function ddumper_text()
  * Shortcut to VarDumper, HTML mode
  *
  * @param   mixed $args
- * @return  void|string
+ * @return  string
  */
 function dumper()
 {
@@ -65,11 +65,6 @@ function dumper()
     // use HTML formatter only if we're not in CLI mode, or if return was requested
     $format = (php_sapi_name() !== 'cli') || $capture ? 'html' : 'cliText';
 
-    // IE goes funky if there's no doctype
-    if (!$capture && ($format === 'html') && !headers_sent() && (!ob_get_level() || ini_get('output_buffering'))) {
-        print '<!DOCTYPE HTML><html><head><title>Horizom VarDumper</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head><body>';
-    }
-
     $ref = new VarDumper($format);
 
     foreach ($args as $index => $arg) {
@@ -79,12 +74,6 @@ function dumper()
     // return the results if this function was called with the error suppression operator
     if (!$capture) {
         return $output;
-    }
-
-    // stop the script if this function was called with the bitwise not operator
-    if (in_array('~', $options, true) && ($format === 'html')) {
-        print '</body></html>';
-        exit(0);
     }
 
     return $output;
